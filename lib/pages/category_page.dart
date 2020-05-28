@@ -260,8 +260,8 @@ class CategoryGoodsList extends StatefulWidget {
 
 class _CategoryGoodsListState extends State<CategoryGoodsList> {
 
-  GlobalKey<EasyRefreshState> _easyRefreshKey =new GlobalKey<EasyRefreshState>();
-  GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<RefreshFooterState>();
+  // GlobalKey<EasyRefreshState> _easyRefreshKey =new GlobalKey<EasyRefreshState>();
+  // GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<RefreshFooterState>();
   var scrollController=new ScrollController();
   
 
@@ -282,14 +282,18 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                 child:Container(
                   width: ScreenUtil().setWidth(570) ,
                   child:EasyRefresh(
-                    refreshFooter: ClassicsFooter(
-                      key:_footerKey,
+                    // refreshFooter: ClassicsFooter(
+                    footer: ClassicalFooter(
+                      // key:_footerKey,
                       bgColor:Colors.white,
                       textColor:Colors.pink,
-                      moreInfoColor: Colors.pink,
-                      showMore:true,
+                      // moreInfoColor: Colors.pink,
+                      infoColor: Colors.pink,
+                      // showMore:true,
+                      showInfo:true,
                       noMoreText:Provide.value<ChildCategory>(context).noMoreText,
-                      moreInfo:'加载中',
+                      // moreInfo:'加载中',
+                      loadedText: '加载中',
                       loadReadyText:'上拉加载'
                     ),
                     child:ListView.builder(
@@ -299,13 +303,14 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
                         return _ListWidget(data.goodsList,index);
                       },
                     ) ,
-                    loadMore: ()async{
+                    onLoad: ()async{
                       if(Provide.value<ChildCategory>(context).noMoreText=='没有更多了'){
                          Fluttertoast.showToast(
                             msg: "已经到底了",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.CENTER,
-                            timeInSecForIos: 1,
+                            // timeInSecForIos: 1,
+                            timeInSecForIosWeb: 1,
                             backgroundColor: Colors.pink,
                             textColor: Colors.white,
                             fontSize: 16.0

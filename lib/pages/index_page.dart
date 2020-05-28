@@ -38,7 +38,9 @@ class IndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    // ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.init(context, width: 750, height: 1334);
+
     return Provide<CurrentIndexProvide>(
 
       builder: (context,child,val){
